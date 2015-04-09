@@ -6,4 +6,5 @@ icudtl.dat
 libffmpegsumo.so
 media/*
 app/flowplayer/*
+app/components/*
 nw*

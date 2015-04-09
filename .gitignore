@@ -1,0 +1,9 @@
+.idea
+node_modules
+locales
+chrome-sandbox
+icudtl.dat
+libffmpegsumo.so
+media/*
+app/flowplayer/*
+nw*

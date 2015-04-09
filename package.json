@@ -1,0 +1,15 @@
+{
+  "name": "hytranslator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Igor Akulov",
+  "license": "Proprietary",
+  "dependencies": {
+    "express": "^4.12.3",
+    "fluent-ffmpeg": "^2.0.0-rc3"
+  }
+}

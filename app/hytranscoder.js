@@ -3,11 +3,13 @@ var express = require('express'),
 
 var app = express();
 
-/*app.use(express.static(__dirname + '/app'));
 
+/*
 app.get('/', function(req, res) {
   res.send('index.html');
 });*/
+
+/*app.use('media', express.static(__dirname + '/media'));*/
 
 app.get('/webm/:filename', function(req, res) {
   res.contentType('video/webm');
@@ -19,6 +21,7 @@ app.get('/webm/:filename', function(req, res) {
   console.log('offset: ', offset);
   console.log('rtmpServer: ', 'rtmp://' + rtmpServer + '/' + rtmpStream);
   var proc = ffmpeg(pathToMovie)
+      .seekInput(offset)
     /* Output to Hybinar server */
       .output('rtmp://' + rtmpServer + '/' + rtmpStream)
       .format('flv')

@@ -4,7 +4,7 @@ locales
 chrome-sandbox
 icudtl.dat
 libffmpegsumo.so
-media/*
+app/media/*
 app/flowplayer/*
 app/components/*
 nw*

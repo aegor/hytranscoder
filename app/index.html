@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head lang="ru">
+    <script type="text/javascript" src="components/webcomponentsjs/webcomponents.js"></script>
+    <link rel="import" href="components/polymer/polymer.html">
+    <link rel="import" href="components/core-elements/core-elements.html">
+    <link rel="import" href="components/paper-elements/paper-elements.html">
+    <meta charset="UTF-8">
+    <title>Hybinar transcoder by Igor Akulov</title>
+
+</head>
+<body>
+<polymer-element name="hy-transcoder" attributes="video offset server stream">
+    <template>
+        <style>
+            :host paper-input-decorator {
+                padding: 0px;
+                width: 200px;
+                overflow: hidden;
+            }
+
+            :host paper-input {
+                padding: 0px;
+                width: 200px;
+                overflow: hidden;
+            }
+
+            /* TODO Проверить, нафига? */
+            p {
+                margin: 0px;
+            }
+
+            /* Paper dropdowm menu stuff */
+            section {
+                padding: 20px 0;
+            }
+
+            section > div {
+                padding: 14px;
+                font-size: 16px;
+            }
+
+            :host paper-dropdown-menu {
+                box-sizing: border-box;
+                width: 180px;
+            }
+
+            :host core-menu {
+                box-sizing: border-box;
+                width: 200px;
+            }
+
+            :host paper-item {
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            }
+
+            :host paper-button.colored {
+                color: #4285f4;
+            }
+
+            :host paper-button[raised].colored {
+                background: #4285f4;
+                color: #fff;
+            }
+
+            :host paper-button.custom > core-icon {
+                margin-right: 4px;
+            }
+
+            :host paper-button.hover:hover {
+                background: #eee;
+            }
+
+            :host paper-button.blue-ripple::shadow #ripple {
+                color: #4285f4;
+            }
+
+            :host .colored {
+                color: #0f9d58;
+            }
+
+            :host .dropdown.colored::shadow #ripple,
+            :host .dropdown.colored::shadow #background {
+                border: 1px solid #0f9d58;
+                background-color: #b7e1cd;
+            }
+        </style>
+        <core-scaffold>
+            <core-header-panel mode="seamed" navigation flex>
+                <core-toolbar style="background-color: #526E9C; color: #fff;">
+                </core-toolbar>
+                <core-menu selected="{{mainMenuSelected}}" selectedIndex="{{mainMenuSelectedIndex}}">
+                    <paper-input value="{{video}}" label="video" floatinglabel></paper-input>
+                    <paper-input value="{{offset}}" label="offset" floatinglabel></paper-input>
+                    <paper-input value="{{server}}" label="server" floatinglabel></paper-input>
+                    <paper-input value="{{stream}}" label="stream" floatinglabel></paper-input>
+                    <paper-button on-click="{{done}}">ГОТОВО</paper-button>
+                </core-menu>
+            </core-header-panel>
+            <div tool> <!-- tool attribute = text on core toolbar -->
+                Hybinar transcoder by Igor Akulov
+            </div>
+        </core-scaffold>
+    </template>
+    <script>
+        PolymerExpressions.prototype.debug = function (input, arg) {
+            var s = "color: blue; font-size: 12px;";
+            console.log("%cPOLYMER DEBUG FILTER. Input: " + input + " Argument: " + arg, s)
+            return input;
+        };
+        Polymer('hy-transcoder', {
+            video: '01.mp4',
+            offset: '1:23',
+            server: 'hybinar.ru',
+            stream: 'egor',
+            done: function (){
+                var postUrl = 'http://localhost:5000/webm/?offset=' + encodeURI(offset);
+                console.log(this.server, this.stream, this.video, this.offset)
+            }
+        });
+    </script>
+</polymer-element>
+<hy-transcoder></hy-transcoder>
+</body>
+</html>

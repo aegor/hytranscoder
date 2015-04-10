@@ -1,23 +1,15 @@
 var express = require('express'),
-  ffmpeg = require('fluent-ffmpeg');
+    ffmpeg = require('fluent-ffmpeg');
 
 var app = express();
-
-
-/*
-app.get('/', function(req, res) {
-  res.send('index.html');
-});*/
-
-/*app.use('media', express.static(__dirname + '/media'));*/
 
 app.get('/webm/:filename', function(req, res) {
   res.contentType('video/webm');
   // make sure you set the correct path to your video file storage
   var pathToMovie = __dirname +  '/media/' + req.params.filename;
-  var offset = req.query.offset;     if (offset.length === 0) {offset = 0}
-  var rtmpStream = req.query.stream; if (rtmpStream.length === 0) {rtmpStream='teacher'}
-  var rtmpServer = req.query.server; if (rtmpServer.length === 0) {rtmpServer = 'hybinar.ru/live'}
+  req.query.offset ? offset = req.query.offset : offset = 0;
+  req.query.stream ? rtmpStream = req.query.stream : rtmpStream = 'teacher';
+  req.query.server ? rtmpServer = req.query.server : rtmpServer = 'hybinar.ru/live';
   console.log('offset: ', offset);
   console.log('rtmpServer: ', 'rtmp://' + rtmpServer + '/' + rtmpStream);
   var proc = ffmpeg(pathToMovie)

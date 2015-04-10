@@ -1,8 +1,9 @@
 {
-  "name": "hytranslator",
+  "name": "hytranscoder",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Hybinar transcoder by Igor Akulov",
+  "main": "app/hytranscoder.html",
+  "node-main": "app/hytranscoder.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -11,5 +12,21 @@
   "dependencies": {
     "express": "^4.12.3",
     "fluent-ffmpeg": "^2.0.0-rc3"
+  },
+"window": {
+    "title": "Hybinar transcoder by Igor Akulov",
+    "icon": "link.png",
+    "toolbar": true,
+    "frame": true,
+    "width": 1280,
+    "height": 1024,
+    "position": "mouse",
+    "min_width": 640,
+    "min_height": 480,
+    "max_width": 1920,
+    "max_height": 1200
+  },
+  "webkit": {
+    "plugin": true
   }
 }

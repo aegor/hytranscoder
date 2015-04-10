@@ -1,3 +1,12 @@
+RAW encoding string:
+/usr/bin/ffmpeg -i /home/egor/Projects/ffmpeg/node-fluent-test/media/01.mp4 \
+-acodec libvo_aacenc -b:a 64k \
+-vcodec libx264 -b:v 512k -f flv -ar 48000 -preset ultrafast -tune zerolatency -analyzeduration 0 \
+rtmp://hybinar.ru/live/egor \
+-acodec libvorbis -b:a 64k \
+-vcodec libvpx -b:v 512k -f webm -ar 48000 -g 52 -lag-in-frames 1 -slices 4 -cpu-used 4 -deadline realtime -bufsize 512 \
+pipe:1
+
 Camera input:
 
 -f video4linux2 -video_size 320x240 -vsync cfr -r 20 -i /dev/video0

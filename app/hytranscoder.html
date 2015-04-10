@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Test for ffmpeg webm streaming</title>
+</head>
+<body>
+<h2>Hybinar transcoder by Igor Akulov</h2>
+<script>
+    var video = "";
+
+/*
+* You must define timeout about 2-3 secs between start/stop player
+* */
+    function stopPlayer() {
+        video.pause();
+        video.src ='';
+        video.parentNode.removeChild(video);
+        video = '';
+    }
+/*
+ Sample URL: http://localhost:5000/webm/01.mp4?offset=30&stream=egor&server=hybinar%2Eru%2Flive
+ Where "offset" is offset in seconds from start of playing file, and "stream" is rtmp stream name on server
+ Defaults:
+ server = 'hybinar.ru/live', must be  URL escaped: hybinar%2Eru%2Flive
+ offset = 0;
+ stream = teacher;
+ Full example: startPlayer('01.mp4?offset=30&stream=egor&server=hybinar%2Eru%2Flive')
+ */
+    function startPlayer(name) {
+        var body = document.querySelector('body');
+        video = document.createElement("video");
+        video.crossOrigin = "anonymous";
+        video.width = 1280;
+        video.height = 1024;
+        video.autoPlay = true;
+        video.loop = false;
+        video.muted = false;
+        video.src = "http://localhost:5000/webm/" + name;
+        body.appendChild(video);
+        video.play();
+    }
+</script>
+</body>
+</html>
